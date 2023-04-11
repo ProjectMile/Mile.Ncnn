@@ -24,7 +24,7 @@ mkdir %BinaryFolder%
 
 mkdir %ObjectFolder%\ncnn
 pushd %ObjectFolder%\ncnn
-cmake -DCMAKE_INSTALL_PREFIX=%BinaryFolder% -G "Ninja" -DCMAKE_BUILD_TYPE=Release ../../../../ncnn
+cmake -DCMAKE_INSTALL_PREFIX=%BinaryFolder% -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DNCNN_RUNTIME_CPU=OFF ../../../../ncnn
 if %ERRORLEVEL% NEQ 0 exit /B %ERRORLEVEL%
 cmake --build . --parallel
 if %ERRORLEVEL% NEQ 0 exit /B %ERRORLEVEL%

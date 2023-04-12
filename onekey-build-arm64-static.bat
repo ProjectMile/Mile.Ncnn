@@ -24,7 +24,7 @@ mkdir %BinaryFolder%
 
 mkdir %ObjectFolder%\ncnn
 pushd %ObjectFolder%\ncnn
-cmake -DCMAKE_INSTALL_PREFIX=%BinaryFolder% -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DNCNN_BUILD_WITH_STATIC_CRT=ON -DNCNN_RUNTIME_CPU=OFF ../../../../ncnn
+cmake -DCMAKE_INSTALL_PREFIX=%BinaryFolder% -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DNCNN_VERSION_STRING="20230223" -DNCNN_BUILD_WITH_STATIC_CRT=ON -DNCNN_RUNTIME_CPU=OFF ../../../../ncnn
 if %ERRORLEVEL% NEQ 0 exit /B %ERRORLEVEL%
 cmake --build . --parallel
 if %ERRORLEVEL% NEQ 0 exit /B %ERRORLEVEL%

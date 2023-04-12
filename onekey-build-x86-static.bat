@@ -22,9 +22,21 @@ rd /s /q %BinaryFolder%
 
 mkdir %BinaryFolder%
 
+set CommonOptions=-DCMAKE_INSTALL_PREFIX=%BinaryFolder% -G "Ninja" -DNCNN_VERSION_STRING="20230223" -DNCNN_BUILD_WITH_STATIC_CRT=ON -DNCNN_RUNTIME_CPU=OFF
+
+mkdir %ObjectFolder%\ncnn_debug
+pushd %ObjectFolder%\ncnn_debug
+cmake %CommonOptions% -DCMAKE_BUILD_TYPE=Debug -DNCNN_AVX2=OFF -DNCNN_AVX=OFF -DNCNN_AVX512=OFF -DNCNN_XOP=OFF ../../../../ncnn
+if %ERRORLEVEL% NEQ 0 exit /B %ERRORLEVEL%
+cmake --build . --parallel
+if %ERRORLEVEL% NEQ 0 exit /B %ERRORLEVEL%
+ninja install
+if %ERRORLEVEL% NEQ 0 exit /B %ERRORLEVEL%
+popd
+
 mkdir %ObjectFolder%\ncnn
 pushd %ObjectFolder%\ncnn
-cmake -DCMAKE_INSTALL_PREFIX=%BinaryFolder% -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DNCNN_VERSION_STRING="20230223" -DNCNN_BUILD_WITH_STATIC_CRT=ON -DNCNN_RUNTIME_CPU=OFF -DNCNN_AVX2=OFF -DNCNN_AVX=OFF -DNCNN_AVX512=OFF -DNCNN_XOP=OFF ../../../../ncnn
+cmake %CommonOptions% -DCMAKE_BUILD_TYPE=Release -DNCNN_AVX2=OFF -DNCNN_AVX=OFF -DNCNN_AVX512=OFF -DNCNN_XOP=OFF ../../../../ncnn
 if %ERRORLEVEL% NEQ 0 exit /B %ERRORLEVEL%
 cmake --build . --parallel
 if %ERRORLEVEL% NEQ 0 exit /B %ERRORLEVEL%

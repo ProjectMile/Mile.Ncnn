@@ -22,7 +22,7 @@ rd /s /q %BinaryFolder%
 
 mkdir %BinaryFolder%
 
-set CommonOptions=-DCMAKE_INSTALL_PREFIX=%BinaryFolder% -G "Ninja" -DNCNN_VERSION_STRING="20230517" -DNCNN_BUILD_WITH_STATIC_CRT=ON
+set CommonOptions=-DCMAKE_INSTALL_PREFIX=%BinaryFolder% -G "Ninja" -DNCNN_VERSION_STRING="20230517" -DNCNN_BUILD_WITH_STATIC_CRT=ON -DNCNN_SHARED_LIB=ON
 
 mkdir %ObjectFolder%\ncnn_debug
 pushd %ObjectFolder%\ncnn_debug

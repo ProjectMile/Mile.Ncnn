@@ -22,7 +22,7 @@ rd /s /q %BinaryFolder%
 
 mkdir %BinaryFolder%
 
-set CommonOptions=-DCMAKE_INSTALL_PREFIX=%BinaryFolder% -G "Ninja" -DNCNN_VERSION_STRING="20230517" -DNCNN_BUILD_WITH_STATIC_CRT=ON -DNCNN_SHARED_LIB=ON
+set CommonOptions=-DCMAKE_INSTALL_PREFIX=%BinaryFolder% -G "Ninja" -DNCNN_VERSION_STRING="20230517" -DNCNN_BUILD_WITH_STATIC_CRT=ON -DNCNN_SHARED_LIB=ON -DWindowsTargetPlatformMinVersion=10.0.19041.0 -DCleanImport=true
 
 mkdir %ObjectFolder%
 pushd %ObjectFolder%

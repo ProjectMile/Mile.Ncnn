@@ -26,7 +26,7 @@ set CommonOptions=-DCMAKE_INSTALL_PREFIX=%BinaryFolder% -G "Ninja" -DNCNN_VERSIO
 
 mkdir %ObjectFolder%
 pushd %ObjectFolder%
-cmake %CommonOptions% -DCMAKE_BUILD_TYPE=Release ../../../ncnn
+cmake %CommonOptions% -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl -DCMAKE_C_FLAGS="--target=arm64-pc-windows-msvc" -DCMAKE_CXX_FLAGS="--target=arm64-pc-windows-msvc" ../../../ncnn
 if %ERRORLEVEL% NEQ 0 exit /B %ERRORLEVEL%
 cmake --build . --parallel
 if %ERRORLEVEL% NEQ 0 exit /B %ERRORLEVEL%
